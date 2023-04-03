@@ -88,7 +88,7 @@ variable "key_name" {
 variable "instance_type" {
   type        = string
   description = "ec2 instance type"
-  default     = "t3a.medium"
+  default     = "t4g.medium"
 }
 variable "hostname_prefix" {
   type        = string
