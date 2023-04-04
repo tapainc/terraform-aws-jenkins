@@ -20,11 +20,13 @@ variable "tags" {
 variable "asg_tags" {
   type        = any
   description = "Dynamic tags for ASG"
-  default = [{
-    key                 = "Name"
-    value               = "tags need setting"
-    propagate_at_launch = true
-  }]
+  default     = [
+    {
+      key                 = "Name"
+      value               = "tags need setting"
+      propagate_at_launch = true
+    }
+  ]
 }
 variable "preliminary_user_data" {
   type        = string
@@ -76,6 +78,11 @@ variable "certificate_arn" {
 variable "vpc_id" {
   type        = string
   description = "VPC id"
+}
+variable "timezone" {
+  type        = string
+  description = "Timezone file to use for the Jenkins server"
+  default     = "UTC"
 }
 variable "environment" {
   type        = string

@@ -11,6 +11,9 @@ efs_mount_retry_sleep=10
 # https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-nfs-mount-settings.html
 efs_mount_command='mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${efs_dnsname}:/ /efsmnt'
 
+rm -f /etc/localtime
+ln -s /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
+
 awk -F= '/^NAME/{print $2}' /etc/os-release | grep -i amazon
 RESULTAMAZON=$?
 if [ $RESULTAMAZON -eq 0 ]; then
