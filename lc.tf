@@ -20,8 +20,7 @@ resource "aws_launch_configuration" "jenkins" {
   })
 
   # Setup root block device
-  root
-  _block_device {
+  root_block_device {
     volume_size = var.volume_size
     volume_type = var.volume_type
     encrypted   = var.encrypted
