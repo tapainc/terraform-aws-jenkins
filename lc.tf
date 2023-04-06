@@ -9,9 +9,7 @@ resource "aws_launch_configuration" "jenkins" {
   iam_instance_profile = var.iam_instance_profile
   security_groups      = var.security_groups
   enable_monitoring    = var.enable_monitoring
-  user_data            = var.custom_userdata != "" ?
-  var.custom_userdata :
-  templatefile("${path.module}/userdata.sh", {
+  user_data            = var.custom_userdata != "" ? var.custom_userdata : templatefile("${path.module}/userdata.sh", {
     appliedhostname         = var.hostname_prefix
     domain_name             = var.domain_name
     environment             = var.environment
