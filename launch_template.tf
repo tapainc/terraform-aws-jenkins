@@ -18,7 +18,7 @@ resource "aws_launch_template" "jenkins" {
     enabled = var.enable_monitoring
   }
 
-  user_data = var.custom_userdata != "" ? var.custom_userdata : templatefile("${path.module}/userdata.sh", {
+  user_data = var.custom_userdata != "" ? var.custom_userdata : base64encode(templatefile("${path.module}/userdata.sh", {
     appliedhostname         = var.hostname_prefix
     domain_name             = var.domain_name
     environment             = var.environment
@@ -26,7 +26,7 @@ resource "aws_launch_template" "jenkins" {
     preliminary_user_data   = var.preliminary_user_data
     supplementary_user_data = var.supplementary_user_data
     TIMEZONE                = var.timezone
-  })
+  }))
 
   lifecycle {
     create_before_destroy = true
